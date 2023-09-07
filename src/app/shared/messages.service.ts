@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+
 
 
 @Injectable({
@@ -10,9 +11,10 @@ export class MessagesService {
   constructor(private _snackBar: MatSnackBar) { }
 
   openSnackBar(message: string, action: string = 'ok') {
-    this._snackBar.open(message, action, {
-      duration: 1000,
-      verticalPosition: 'top',
-    });
-  }
+    const config = new MatSnackBarConfig();
+    config.duration = 1000;
+    config.verticalPosition = 'bottom'; // Set the vertical position to 'middle'
+  
+    this._snackBar.open(message, action, config);
+}
 }
